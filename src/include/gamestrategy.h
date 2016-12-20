@@ -22,6 +22,11 @@ namespace Game {
 			void setStrategy(Strategy strategy) {
 				mStrategy = strategy;
 			}
+
+			void setExpertLevel(GameExpertLevel level) {
+				mExpertLevel = level;
+			}
+
 			typedef struct ScoreWithPos{
 				int score;
 				std::pair<int, int> cellId;
@@ -37,13 +42,14 @@ namespace Game {
 			} Score_t;
 
 		private:
-			GameStrategy() : mStrategy(Strategy::RANDOM_MOVE) {}
+			GameStrategy() : mStrategy(Strategy::RANDOM_MOVE), mExpertLevel(GameExpertLevel::EXPERT) {}
 			GameStrategy& operator=(const GameStrategy);
 
 			Score_t minMaxTree(GameState gameState, Player player, int level);
 
 			static GameStrategy* mInstance;
 			Strategy mStrategy;
+			GameExpertLevel mExpertLevel;
 
 	};
 }

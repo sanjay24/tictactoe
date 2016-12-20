@@ -15,9 +15,6 @@
 
 namespace Game {
 
-	bool comp(const GameStrategy::Score_t &lhs, const GameStrategy::Score_t &rhs) {
-		return lhs.score < rhs.score;
-	}
 	GameStrategy* GameStrategy::mInstance = nullptr;
 
 	GameStrategy* GameStrategy::instance() {
@@ -71,6 +68,14 @@ namespace Game {
 
 		auto emptyCells = gameState.getEmptyCells();
 
+		if (level > mExpertLevel) {
+			// This level is nutral to both and doesn't
+			// maximizes or minimizes to any player's score
+			GameStrategy::Score_t noScore;
+			noScore.score = 0;
+			return noScore;
+		}
+
 		GameStrategy::Score_t retValue;
 
 		if (gameState.isWinningState()) {
@@ -119,9 +124,6 @@ namespace Game {
 				debug_print("POS (%d, %d) => ",minMaxScore[i].cellId.first,	minMaxScore[i].cellId.second);
 				debug_print("SCORE = %d\n", minMaxScore[i].score);
 			}
-
-			// there could be a possibility that, computer will have to choose b/w
-			// either to block (score = 0) or go for distant win (score = 10)
 
 			auto itr = std::max_element(minMaxScore.begin(), minMaxScore.end(),
 					[](const Score_t& lhs, const Score_t& rhs) {

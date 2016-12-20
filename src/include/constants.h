@@ -13,6 +13,11 @@ namespace Game {
 	const int COL_SIZE = 3;
 	int const MAX_LEVEL = 9;
 
+	enum GameExpertLevel {
+		BEGINNER = 2,
+		INTERMEDIATE = 4,
+		EXPERT = 9
+	};
 	enum Strategy {
 		RANDOM_MOVE,
 		BEST_MOVE

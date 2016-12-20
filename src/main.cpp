@@ -23,6 +23,8 @@ int main() {
 #if 1 // main logic
 	Board board;
 	cout<<"Starting the board with state"<<endl;
+	GameStrategy::instance()->setStrategy(Strategy::BEST_MOVE);
+	GameStrategy::instance()->setExpertLevel(GameExpertLevel::EXPERT);
 	board.play();
 #endif
 #if 0 // usecase 1

@@ -53,7 +53,6 @@ namespace Game {
 
 		Player winningPlayer = Player::COMPUTER;
 		bool isGameOver = false;
-		GameStrategy::instance()->setStrategy(Strategy::RANDOM_MOVE);
 		while (mDisplayWindow.isOpen()) {
 
 			// this state will be changed by player
